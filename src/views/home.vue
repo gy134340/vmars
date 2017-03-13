@@ -1,5 +1,5 @@
 <template>
-	<div class="home" v-bind:style="{ background: style.bg, backgroundSize: 'cover'}">
+	<div class="home" v-bind:style="bgall">
 		<div class="intro">
 			<h4 class="title">title: {{ apod.title}}</h4>
 			<p class="info">{{ apod.explanation }}</p>
@@ -26,9 +26,12 @@ export default {
 		imgUrl: function () {
 			return this.apod.url;
 		},
-		style: function() {
+		bgall: function() {
 			return {
-				bg: 'url(' + this.apod.url + ') no-repeat center center',
+				'background-size': 'cover',
+				'background-image': 'url(' + this.apod.url + ')',
+				'background-position': 'center center',
+				'background-repeat': 'no-repeat'
 			};
 			
 		} 
@@ -53,7 +56,6 @@ export default {
 
 </script>
 <style >
-    @import '../assets/reset.css';
 	.home {
 		width: 100%;
 		height: 100%;
