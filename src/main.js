@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import store from './store/index.js';
+import store from './store';
 import { sync } from 'vuex-router-sync';
 
 sync(store, router);
@@ -11,12 +11,12 @@ sync(store, router);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
-const app = new Vue({
+new Vue({
 	el: '#app',
 	router,
 	store,
 	template: '<App/>',
 	components: { App }
-});
+}).$mount('#app');
 
-export { app, router, store };
+// export { app, router, store };
