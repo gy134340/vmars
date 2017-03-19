@@ -2,7 +2,7 @@
 	<div class="home" v-bind:style="bgall">
 		<h3 class="caption">每日天文图片</h3>
 		<!-- <p class="date">Select date...</p> -->
-		<input class="date" placeholder="Select date..."></input>
+		<input class="date_input" placeholder="Select date..."></input>
 		<div class="intro">
 			<h4 class="title">{{ apod.title}}</h4>
 			<p class="info">{{ apod.explanation }}</p>
@@ -22,7 +22,8 @@ export default {
 	data () {
 		return {
 			apod: '',
-			dateStr: '2016'
+			dateStr: '2016',
+			// date: new Date()
 		};
 	},
 	computed: {
@@ -42,25 +43,34 @@ export default {
 		
 	},
 	beforeMount () {
-		axios.get('https://api.nasa.gov/planetary/apod?api_key=NkLecWqIRgjAv1brKJLD1gvVekp48jnwv7H3NCeV')
-		.then(res => {
-			this.apod = res.data;
-		})
-		.catch(err => {
-			console.log(err);
-		});
+		this.getNewImg();
 	},
 	mounted () {
-		let ele = document.querySelectorAll('.date')[0];
+		let ele = document.querySelectorAll('.date_input')[0];
 		new Flatpickr(ele, {
-			enableTime: true,
+			// altInput: true,
 			maxDate: new Date(),
-			inline: false
+			// dateFormat: 'd.m.Y',
+			defaultDate: '2017-01-10',
+			onChange: function(selectedDates, dateStr, instance) {
+				let date = dateStr;
+				this.getNewImg(date);
+			},
 		});
 
 	},
 	methods: {
-
+		getNewImg (date = '2017-01-10') {
+			// let url = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=NkLecWqIRgjAv1brKJLD1gvVekp48jnwv7H3NCeV`;
+			let url = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=54CTJvu9NJ25fe7z8K9GKOcXVfQMcWqBtILaTszK`;
+			axios.get(url)
+			.then(res => {
+				this.apod = res.data;
+			})
+			.catch(err => {
+				console.log(err);
+			});
+		}, 
 	}
 };
 
@@ -89,8 +99,8 @@ export default {
 			-webkit-transform: translate(-50%, -50%);
 			transform: translate(-50%, -50%);
 		}
-		.date {
-			color: #ccc;
+		.date_input {
+			/*color: #ccc;
 			width: 130px;
 			height: 15px;
 			position: absolute;
@@ -99,8 +109,14 @@ export default {
 			display: inline-block;
 			
 			border-radius: 10px;
-			background-color: rgba(88,88,88,0.5);
-    		padding: 8px;
+			background-color: rgba(88,88,88,0.5);*/
+			width: 130px;
+			height: 15px;
+			position: absolute;
+			margin: 30px 0px 0px 30px;
+			color: #ccc;
+			padding: 8px;
+			border: 1px solid #e3e3e3;
 		}
 		.flatpickr-calendar {
 			background-color: #484d5a;
