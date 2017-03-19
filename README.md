@@ -2,20 +2,8 @@
 
 > A Vue.js project
 
-## Build Setup
+Thanks for NASA public api.
 
-``` bash
-# install dependencies
-npm install
+a small demo with Vue
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+> 因为 API 太卡。。。。。。。 不进一步做下去了
