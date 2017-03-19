@@ -61,8 +61,8 @@ export default {
 	},
 	methods: {
 		getNewImg (date = '2017-01-10') {
-			// let url = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=NkLecWqIRgjAv1brKJLD1gvVekp48jnwv7H3NCeV`;
-			let url = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=54CTJvu9NJ25fe7z8K9GKOcXVfQMcWqBtILaTszK`;
+			let url = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=NkLecWqIRgjAv1brKJLD1gvVekp48jnwv7H3NCeV`;
+			// let url = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=54CTJvu9NJ25fe7z8K9GKOcXVfQMcWqBtILaTszK`;
 			axios.get(url)
 			.then(res => {
 				this.apod = res.data;
